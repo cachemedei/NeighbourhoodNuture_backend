@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
 # model to create a project
 class Project(models.Model):
@@ -8,6 +9,11 @@ class Project(models.Model):
     image = models.URLField()
     is_open = models.BooleanField()
     date_created = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name='owned_projects'
+    )
 
 # model to create a pledge for a project
 class Pledge(models.Model):
@@ -16,6 +22,11 @@ class Pledge(models.Model):
     anonymous = models.BooleanField()
     project = models.ForeignKey(
         'Project',
+        on_delete=models.CASCADE,
+        related_name='pledges'
+    )
+    supporter = models.ForeignKey(
+        get_user_model(),
         on_delete=models.CASCADE,
         related_name='pledges'
     )
