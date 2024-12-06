@@ -1,5 +1,6 @@
 from django.db import models
 
+# model to create a project
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -8,6 +9,7 @@ class Project(models.Model):
     is_open = models.BooleanField()
     date_created = models.DateTimeField(auto_now_add=True)
 
+# model to create a pledge for a project
 class Pledge(models.Model):
     amount = models.IntegerField()
     comment = models.CharField(max_length=200)

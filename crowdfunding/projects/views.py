@@ -4,7 +4,7 @@ from rest_framework import status
 from django.http import Http404
 
 from .models import Project, Pledge
-from .serializers import ProjectSerializer, PledgeSerializer
+from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer
 
 # all projects
 class ProjectList(APIView):
@@ -39,7 +39,7 @@ class ProjectDetail(APIView):
     
     def get(self, request, pk):
         project = self.get_object(pk)
-        serializer = ProjectSerializer(project)
+        serializer = ProjectDetailSerializer(project)
         return Response(serializer.data)
 
 # all pledges
