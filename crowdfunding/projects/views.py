@@ -135,10 +135,10 @@ class PledgeDetail(APIView):
 # projects by specific owner
 class UserProjectsView(APIView):
     
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    def get(self, request, id):
-        projects = Project.objects.filter(owner=id)
+    def get(self, request, owned_projects):
+        projects = Project.objects.filter(owner=owned_projects)
         if not projects:
             return Response(
                 {'detail': 'no projects found for this user'},
