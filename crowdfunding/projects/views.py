@@ -133,16 +133,16 @@ class PledgeDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 # projects by specific owner
-class UserProjectsView(APIView):
+# class UserProjectsView(APIView):
     
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+#     #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    def get(self, request, owned_projects):
-        projects = Project.objects.filter(owner=owned_projects)
-        if not projects:
-            return Response(
-                {'detail': 'no projects found for this user'},
-                status=status.HTTP_404_NOT_FOUND
-            )
-        serializer = ProjectSerializer(projects, many=True)
-        return Response(serializer.data)
+#     def get(self, request, owned_projects):
+#         projects = Project.objects.filter(owner=owned_projects)
+#         if not projects:
+#             return Response(
+#                 {'detail': 'no projects found for this user'},
+#                 status=status.HTTP_404_NOT_FOUND
+#             )
+#         serializer = ProjectSerializer(projects, many=True)
+#         return Response(serializer.data)
