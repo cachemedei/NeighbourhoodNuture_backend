@@ -35,7 +35,6 @@ class ProjectDetail(APIView):
 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
-
     def get_object(self, pk):
         try:
             project = Project.objects.get(pk=pk)
@@ -132,3 +131,12 @@ class PledgeDetail(APIView):
         pledge.delete()
         
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+# projects by specific owner
+class UserProjectsView(APIView):
+    
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
+    def get(self):
+        user_id = self.kwargs['user_id']
+        return Project.objects.filter(owner_id=user_id)  
