@@ -26,7 +26,6 @@ class CustomUserList(APIView):
        return Response(
            serializer.errors, 
            status=status.HTTP_400_BAD_REQUEST,
-           message='username taken '
        )
 
 # specific user
