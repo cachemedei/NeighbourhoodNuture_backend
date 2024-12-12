@@ -9,11 +9,6 @@ class PledgeSerializer(serializers.ModelSerializer):
         model = apps.get_model('projects.Pledge')
         fields = '__all__'
 
-#test
-    def create(self, validated_data):
-        validated_data['supporter'] = self.context['request'].user
-        return super().create(validated_data)
-
 class PledgeDetailSerializer(PledgeSerializer):
     def update(self, instance, validated_data):
         instance.amount = validated_data.get("amount", instance.amount)

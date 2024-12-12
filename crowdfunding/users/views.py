@@ -77,5 +77,4 @@ class CustomAuthToken(ObtainAuthToken):
             'token': token.key,
             'user_id': user.id,
             'email': user.email,
-            'username': user.username
         })
