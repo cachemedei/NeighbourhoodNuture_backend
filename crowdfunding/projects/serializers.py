@@ -5,7 +5,7 @@ from django.apps import apps
 class PledgeSerializer(serializers.ModelSerializer):
     supporter = serializers.ReadOnlyField(source='supporter.id')
     # test
-    supporter_name = serializers.ReadOnlyField(source='supporter.username')
+    supporter_name = serializers.ReadOnlyField(source='supporter.supporter_name')
     
     class Meta:
         model = apps.get_model('projects.Pledge')

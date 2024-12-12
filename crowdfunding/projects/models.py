@@ -30,7 +30,6 @@ class Pledge(models.Model):
         on_delete=models.CASCADE,
         related_name='pledges'
     )
-
     #test
     def supporter_name(self):
         if self.anonymous:
