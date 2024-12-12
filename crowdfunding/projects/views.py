@@ -73,7 +73,7 @@ class ProjectDetail(APIView):
 # all pledges
 class PledgeList(APIView):
 
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get(self, request):
         pledges = Pledge.objects.all()
