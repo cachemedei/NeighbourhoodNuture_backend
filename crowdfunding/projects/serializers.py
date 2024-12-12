@@ -4,8 +4,6 @@ from django.apps import apps
 # pledge
 class PledgeSerializer(serializers.ModelSerializer):
     supporter = serializers.ReadOnlyField(source='supporter.id')
-    # test
-    supporter_name = serializers.ReadOnlyField(source='supporter.supporter_name')
     
     class Meta:
         model = apps.get_model('projects.Pledge')
