@@ -41,6 +41,23 @@ class CustomUserDetail(APIView):
        serializer = CustomUserSerializer(user)
        return Response(serializer.data)
     
+    # edit user details
+    def put(self, request, pk):
+        project = self.get_object(pk)
+        serializer = CustomUserSerializer(
+            instance=project,
+            data=request.data,
+            partial=True
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
     def delete(self, request, pk):
         user = self.get_object(pk)
         user.delete()
