@@ -4,10 +4,17 @@ from django.apps import apps
 # pledge
 class PledgeSerializer(serializers.ModelSerializer):
     supporter = serializers.ReadOnlyField(source='supporter.id')
+    # test
+    supporter_name = serializers.ReadOnlyField(source='supporter.username')
     
     class Meta:
         model = apps.get_model('projects.Pledge')
         fields = '__all__'
+
+#test
+    def create(self, validated_data):
+        validated_data['supporter'] = self.context['request'].user
+        return super().create(validated_data)
 
 class PledgeDetailSerializer(PledgeSerializer):
     def update(self, instance, validated_data):
