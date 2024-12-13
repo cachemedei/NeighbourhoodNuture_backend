@@ -1,9 +1,11 @@
 from rest_framework import serializers
 from django.apps import apps
+from users.serializers import CustomUserSerializer
 
 # pledge
 class PledgeSerializer(serializers.ModelSerializer):
-    supporter = serializers.ReadOnlyField(source='supporter.id')
+    #supporter = serializers.ReadOnlyField(source='supporter.id')
+    supporter = CustomUserSerializer(many=False, read_only=True)
     
     class Meta:
         model = apps.get_model('projects.Pledge')
